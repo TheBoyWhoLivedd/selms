@@ -16,7 +16,8 @@ File: Main Css File
 @import "./config/modern/dark-mode";
 @import "config/modern/custom-variables";
 
-@import "./node_modules/bootstrap/scss/bootstrap";
+// @import "./node_modules/bootstrap/scss/bootstrap";
+@import "../../../node_modules/bootstrap/scss/bootstrap.scss";
 
 // Structure
 @import "custom/structure/general";

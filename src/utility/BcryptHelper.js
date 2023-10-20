@@ -14,3 +14,7 @@ module.exports = {
   HashPassword,
   VerifyPassword,
 };
+
+// HashPassword("12345").then((temp) => {
+//   console.log(temp);
+// });

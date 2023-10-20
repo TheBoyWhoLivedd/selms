@@ -8,7 +8,7 @@ import { RemoveUserDetails } from "../redux/slices/UserSlice";
 import store from "../redux/store/store";
 
 //Axios default setting
-axios.defaults.baseURL = "/api/v1";
+axios.defaults.baseURL = "http://localhost:3500/api/v1";
 axios.defaults.headers.post["Content-Type"] =
   "application/x-www-form-urlencoded";
 
@@ -22,20 +22,43 @@ const ResponseReturn = (response) => {
   return response;
 };
 
+// const ErrorReturn = (error) => {
+//   store.dispatch(RemoveLoading());
+//   if (error.response.status === 500) {
+//     ToastMessage.errorMessage("Sorry, Something went wrong");
+//   } else if (error.response.status === 401) {
+//     ToastMessage.errorMessage(error.response.data.message);
+//     store.dispatch(SetLogout());
+//     store.dispatch(RemoveUserDetails());
+//   } else {
+//     ToastMessage.errorMessage(error.response.data.message);
+//   }
+
+//   return false;
+// };
+
 const ErrorReturn = (error) => {
   store.dispatch(RemoveLoading());
-  if (error.response.status === 500) {
-    ToastMessage.errorMessage("Sorry, Something went wrong");
-  } else if (error.response.status === 401) {
-    ToastMessage.errorMessage(error.response.data.message);
-    store.dispatch(SetLogout());
-    store.dispatch(RemoveUserDetails());
+
+  // Check if error.response exists
+  if (error.response) {
+    if (error.response.status === 500) {
+      ToastMessage.errorMessage("Sorry, Something went wrong");
+    } else if (error.response.status === 401) {
+      ToastMessage.errorMessage(error.response.data.message);
+      store.dispatch(SetLogout());
+      store.dispatch(RemoveUserDetails());
+    } else {
+      ToastMessage.errorMessage(error.response.data.message);
+    }
   } else {
-    ToastMessage.errorMessage(error.response.data.message);
+    // Handle cases where error.response is undefined
+    ToastMessage.errorMessage("Network error or unexpected error occurred");
   }
 
   return false;
 };
+
 
 class RestClient {
   static async getRequest(url) {

@@ -4,6 +4,7 @@ const morgan = require("morgan");
 const dotenv = require("dotenv");
 const multer = require("multer");
 const path = require("path");
+const bcrypt = require("bcrypt");
 
 const app = new express();
 
@@ -39,7 +40,7 @@ app.use(
     directives: {
       "img-src": ["'self'", "https: data: blob:"],
     },
-  }),
+  })
 );
 app.use(expressMongoSanitize());
 app.use(xssClean());
@@ -68,8 +69,9 @@ const DB_OPTIONS = {
 };
 
 //connection database
-connectDB(MONGODB_CONNECTION_URL, DB_OPTIONS);
-
+connectDB(MONGODB_CONNECTION_URL);
+//12345
+// $2b$10$C7rwYnnsJzKwwCQAsH8Y8OSRG5u5WDt4SbSJqioKaHHXfyNmQDWkS
 // Routing Implement
 app.use("/api/v1", routes);
 
@@ -91,3 +93,12 @@ app.use(NotFoundError);
 app.use(DefaultErrorHandler);
 
 module.exports = app;
+
+//nis Account ID: A00006810
+
+// You’re almost set! To be able to activate your Private Email subscription to receive mail and create mailboxes, you must first set up these important DNS records from the table below. You can find a little help to do this in our handy step-by-step guide. Once completed, please allow up to 4 hours for the changes to take effect.
+
+// Hostname	Record type	Priority	Value
+// @	MX	10	mx1.privateemail.com
+// @	MX	10	mx2.privateemail.com
+// @	TXT		v=spf1 include:spf.privateemail.com ~all

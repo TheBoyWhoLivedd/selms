@@ -1,8 +1,8 @@
 {
-  "name": "staff-employee-leave-management-system",
+  "name": "s-e-l-m-s",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "https://github.com/developer-sujon/protfolio-sujon.git",
+  "repository": "https://github.com/developer-sujon/portfolio-sujon.git",
   "author": "developer-sujon <developersujon@yahoo.com>",
   "license": "MIT",
   "scripts": {
